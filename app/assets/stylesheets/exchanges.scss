@@ -8,41 +8,33 @@
 html {
   overflow-y: scroll;
 }
-
 body {
   padding-top: 60px;
 }
-
 section {
   overflow: auto;
 }
-
 textarea {
   resize: vertical;
 }
-
 .center {
   text-align: center;
 }
-
 .center h1 {
   margin-bottom: 15px;
 }
 
 
 /* typography */
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
-
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -51,7 +43,6 @@ h2 {
   font-weight: normal;
   color: #999;
 }
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -62,7 +53,7 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -70,7 +61,6 @@ p {
   font-weight: bold;
   line-height: 1;
 }
-
 #logo:hover {
   color: #fff;
   text-decoration: none;
@@ -83,25 +73,57 @@ footer {
   border-top: 1px solid #eaeaea;
   color: #999;
 }
-
 footer a {
   color: #555;
 }
-
 footer a:hover {
   color: #222;
 }
-
 footer small {
   float: right;
 }
-
 footer ul {
   float: left;
   list-style: none;
 }
-
 footer ul li {
   float: bottom;
   margin-bottom: 10px;
+}
+
+
+#full_page_container{
+  margin: 0; 
+  padding: 0;
+  display: flex;
+  height: 100%;  
+  width:100%; 
+  font-size: 1;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+#left #middle #right {
+  display: inline-block; 
+  zoom: 1; 
+  vertical-align: top; 
+  font-size: 14px;
+}
+
+#left {
+  width: 25%; 
+}
+#middle {
+  width: 50%; 
+}
+#right {
+  width: 25%; 
+}
+
+.mailing-list{
+  text-align: center;
+
+  &__text {
+    padding: 0 2rem;
+    }
 }
