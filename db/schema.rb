@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_163747) do
+ActiveRecord::Schema.define(version: 2019_09_29_043450) do
 
   create_table "exchanges", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string "sub_email"
+    t.string "type_of_sub"
+    t.boolean "subscribed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
