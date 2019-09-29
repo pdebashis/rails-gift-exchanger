@@ -1,8 +1,7 @@
 class SubscribersController < ApplicationController
-  before_action :set_subscriber, only: [:show]
 
-
-
+  def index
+  end
   # GET /subscribers/new
   def new
     @subscriber = Subscriber.new
@@ -20,7 +19,8 @@ class SubscribersController < ApplicationController
 
       @subscriber = Subscriber.new(attr_with_defaults)
       if @subscriber.save
-        redirect_to @subscriber, notice: 'Subscriber was successfully created.'
+        SubscriberMailer.subscription_confirmation(@subscriber).deliver_now
+        redirect_to root_path, notice: @subscriber.sub_email + ' has been successfully added to our mailing list.'
       else
         render :new
       end
@@ -28,11 +28,6 @@ class SubscribersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subscriber
-      @subscriber = Subscriber.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscriber_params
       params.require(:subscriber).permit(:sub_email,:type_of_sub,:subscribed)

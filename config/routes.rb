@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :subscribers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :exchanges
+  resources :subscribers, only: [:new, :create, :destroy]
+
+  get '/subscribers' => "subscribers#new"
 
   root 'subscribers#new'
 
