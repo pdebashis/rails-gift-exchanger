@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.4'
 
 gem 'rails', '~> 6.0.0'
 gem 'sqlite3', '~> 1.4'
@@ -11,14 +11,13 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 
-
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
-gem 'rb-readline'
 
-gem 'google_sign_in'
 gem 'jquery-rails'
+gem 'omniauth-google-oauth2'
 
+gem 'irb', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do

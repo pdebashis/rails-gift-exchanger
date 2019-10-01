@@ -3,7 +3,14 @@
   	<div class="container">
       <%= link_to "Gift Exchange", root_path, id: "logo"%>
         <div class="user-nav">
-            <%= link_to "Log in", '#' %> or <%= link_to "Create an Account", '#' %>
+            
+			<% if current_user %>
+  				Signed in as <%= current_user.name %>!
+  				<%= link_to "Sign out", signout_path %>
+			<% else %>
+  				<%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+			<% end %>
+
         </div>
     </div>
   </div>
