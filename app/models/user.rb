@@ -9,6 +9,7 @@ class User < ApplicationRecord
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
       user.us_email = auth["info"]["email"]
+      Subscriber.new({:subscribed => true, :type_of_sub=> "Sign in Subscriber",:sub_email => user.us_email}).save
     end
   end
 
