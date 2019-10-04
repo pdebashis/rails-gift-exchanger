@@ -9,6 +9,9 @@ class User < ApplicationRecord
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
       user.us_email = auth["info"]["email"]
+
+      exist_subscriber = Subscriber.find_by(sub_email: user.us_email)
+      exist_subscriber.delete
       Subscriber.new({:subscribed => true, :type_of_sub=> "Sign in Subscriber",:sub_email => user.us_email}).save
     end
   end
