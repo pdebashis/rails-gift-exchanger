@@ -21,6 +21,16 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.action_mailer.default_url_options = { :host => 'gifts-exchange.herokuapp.com' }
+    config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "giftexchange.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV['google_username'],
+    password: ENV['google_password']
+  }
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
