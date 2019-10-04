@@ -5,10 +5,6 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  ENV['GMAIL_USERNAME'] = "dabbebhutdp@gmail.com"
-  ENV['GMAIL_PASSWORD'] = "secret"
-  ENV['GOOGLE_CLIENT_ID'] = "865604236674-eiboirtm7q0bf4bakvm96okq3o5u62qk.apps.googleusercontent.com"
-  ENV['GOOGLE_CLIENT_SECRET'] = "q3l4kw-x7GlmWgvMTv3Fahsm" 
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -45,8 +41,8 @@ Rails.application.configure do
     domain: "giftexchange.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD']
+    user_name: ENV['google_username'],
+    password: ENV['google_password']
   }
 
   config.action_mailer.perform_caching = false
