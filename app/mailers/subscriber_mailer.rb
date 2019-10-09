@@ -1,5 +1,5 @@
 class SubscriberMailer < ApplicationMailer
-  default from: "gift-exchange-project@debmail.com"
+  default from: "no-reply-here@giftexchange.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

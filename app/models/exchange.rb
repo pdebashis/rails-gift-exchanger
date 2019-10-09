@@ -1,2 +1,0 @@
-class Exchange < ApplicationRecord
-end

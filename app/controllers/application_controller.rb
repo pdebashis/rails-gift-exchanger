@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Clearance::Controller
 
   def contact
     render "static pages/contact"
@@ -8,10 +9,4 @@ class ApplicationController < ActionController::Base
     render "static pages/terms_of_use"
   end
 
-  private
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-  helper_method :current_user
 end

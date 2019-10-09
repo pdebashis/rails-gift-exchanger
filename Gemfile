@@ -13,10 +13,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'figaro'
+gem 'clearance'
 
 gem 'irb', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
