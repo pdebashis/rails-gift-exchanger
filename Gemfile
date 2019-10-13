@@ -16,6 +16,7 @@ gem 'jquery-rails'
 
 gem 'figaro'
 gem 'clearance'
+gem 'rails_admin', '~> 2.0'
 
 gem 'irb', require: false
 gem 'bootsnap', '>= 1.4.2', require: false

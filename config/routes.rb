@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :subscribers, only: [:new, :create, :destroy]
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  get '/subscribers' => 'subscribers#new'
+  resources :subscribers
 
   root 'subscribers#new'
 
