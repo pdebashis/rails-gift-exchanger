@@ -2,14 +2,15 @@
 
   <h1>
     <div id="full_page_container">
-      <div id="left">Step 1. Join Gift Exchange</div>
-      <div id="middle">Step 2. Get Matched and Send Gift</div>
-      <div id="right">Step 3. Recieve and Open your Gift</div>
+      <div id="left">Ready by Christmas</div>
+      <div id="middle">
+        <%= link_to "Sign Up", sign_up_path %> <p>using email and password</p>
+      </div>
+      <div id="right">Subscribe to receive updates</div>
     </div>
   </h1>
 
   <h3>Subscribe to our mailing list</h3>
-  <p>Sign up to receive updates about The Gift Exchange Project</p>
 
   <div>
 	<%= render 'form', subscriber: @subscriber %>
