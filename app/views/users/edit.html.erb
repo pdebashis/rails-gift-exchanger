@@ -1,0 +1,16 @@
+<div id="clearance">
+  <%= form_for @user do |form| %>
+  
+  <%= form.label :email %>
+  <%= form.text_field :email, :readonly => true %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name, autofocus: true %>
+
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+
+  <% end %>
+</div>

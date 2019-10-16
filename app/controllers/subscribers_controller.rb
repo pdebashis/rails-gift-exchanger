@@ -28,6 +28,9 @@ class SubscribersController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscriber_params

@@ -8,6 +8,6 @@ class SubscriberMailer < ApplicationMailer
   def subscription_confirmation(subscriber)
     @subscriber = subscriber
 
-    mail to: @subscriber.sub_email, subject: "Rails Gift Exchanger Project Sign Up Confirmation"
+    mail to: @subscriber.sub_email, subject: "Rails Gift Exchanger Updates Subscription"
   end
 end

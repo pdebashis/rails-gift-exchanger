@@ -5,11 +5,6 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
     @subscriber = subscribers(:one)
   end
 
-  test "should get index" do
-    get subscribers_url
-    assert_response :success
-  end
-
   test "should get new" do
     get new_subscriber_url
     assert_response :success
@@ -17,25 +12,8 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create subscriber" do
     assert_difference('Subscriber.count') do
-      post subscribers_url, params: { subscriber: { sub_email: @subscriber.sub_email, subscribed: @subscriber.subscribed, type_of_sub: @subscriber.type_of_sub } }
+      post subscribers_url, params: { subscriber: { sub_email: "newasdd@sadads.com"} }
     end
-
-    assert_redirected_to subscriber_url(Subscriber.last)
-  end
-
-  test "should show subscriber" do
-    get subscriber_url(@subscriber)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_subscriber_url(@subscriber)
-    assert_response :success
-  end
-
-  test "should update subscriber" do
-    patch subscriber_url(@subscriber), params: { subscriber: { sub_email: @subscriber.sub_email, subscribed: @subscriber.subscribed, type_of_sub: @subscriber.type_of_sub } }
-    assert_redirected_to subscriber_url(@subscriber)
   end
 
   test "should destroy subscriber" do
