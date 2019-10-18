@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :exchanges
-  resources :subscribers except: [:show, :edit, :update]
+  resources :subscribers
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -28,9 +28,6 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
-
-
 
 
   get '/contact', to: 'application#contact'

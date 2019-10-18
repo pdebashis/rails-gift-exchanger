@@ -1,12 +1,11 @@
 class UsersController < Clearance::UsersController
+  before_action :set_user, only: [:edit, :update]
 
   def edit
-  	@user = User.find(params[:id])
+  	@user
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update_attributes(user_params)
       redirect_to root_path, notice: 'User was successfully updated'
     else
@@ -18,6 +17,10 @@ class UsersController < Clearance::UsersController
 
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
