@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  date_of_gifting: 2019-10-18
+  finish_date: 2019-10-18
+  date_of_matching: 2019-10-18
+
+two:
+  title: MyString
+  date_of_gifting: 2019-10-18
+  finish_date: 2019-10-18
+  date_of_matching: 2019-10-18
