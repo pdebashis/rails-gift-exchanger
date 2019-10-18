@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
+
   resources :exchanges
-  resources :subscribers
+  resources :subscribers except: [:show, :edit, :update]
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   constraints Clearance::Constraints::SignedOut.new do
     root 'subscribers#new'
   end
- 
+
   constraints Clearance::Constraints::SignedIn.new do
     root 'exchanges#index', as: :signed_in_root
   end

@@ -3,7 +3,7 @@
 
       <%= link_to "Gift Exchange", root_path, id: "logo"%>
         <div class="user-nav">
-            
+
       <% if signed_in? %>
         Signed in as: <%= current_user.email %>
         <%= link_to 'Admin Panel', rails_admin_path %>

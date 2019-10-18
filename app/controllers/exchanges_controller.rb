@@ -1,7 +1,7 @@
 class ExchangesController < ApplicationController
   before_action :require_login
   before_action :set_exchange, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /exchanges
   # GET /exchanges.json

@@ -13,7 +13,7 @@ class SubscribersController < ApplicationController
   def create
     attr_with_defaults = {:subscribed => true, :type_of_sub=> "FrontPage Subscriber"}.merge(subscriber_params)
     @subscriber = Subscriber.find_by(attr_with_defaults)
-    
+
     if @subscriber
       redirect_to root_path, notice: @subscriber.sub_email + ' is already a Subscriber'
     else
