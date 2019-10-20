@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :exchanges
-  resources :subscribers
+  resources :subscribers, only: [:index, :new, :create, :show]
+
+  patch 'subscribers/update'
+
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]

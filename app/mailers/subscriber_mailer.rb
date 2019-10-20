@@ -5,8 +5,9 @@ class SubscriberMailer < ApplicationMailer
   #
   #   en.subscriber_mailer.subscription_confirmation.subject
   #
-  def subscription_confirmation(subscriber)
+  def subscription_confirmation(subscriber,unsubscribe)
     @subscriber = subscriber
+    @unsubscribe = unsubscribe
 
     mail to: @subscriber.sub_email, subject: "Rails Gift Exchanger Updates Subscription"
   end

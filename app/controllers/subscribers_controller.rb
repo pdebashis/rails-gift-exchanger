@@ -20,7 +20,8 @@ class SubscribersController < ApplicationController
 
       @subscriber = Subscriber.new(attr_with_defaults)
       if @subscriber.save
-        SubscriberMailer.subscription_confirmation(@subscriber).deliver_now
+        @unsubscribe = Rails.application.message_verifier(:unsubscribe).generate(@subscriber.id)
+        SubscriberMailer.subscription_confirmation(@subscriber,@unsubscribe).deliver_now
         redirect_to root_path, notice: @subscriber.sub_email + ' has been successfully added to our mailing list.'
       else
         render :new
@@ -28,8 +29,22 @@ class SubscribersController < ApplicationController
     end
   end
 
-  def destroy
+  def update
+    @subscriber = Subscriber.find(params[:id])
+    if @subscriber.update(subscriber_params)
+      flash[:notice] = 'Subscription Cancelled' 
+      redirect_to root_url
+    else
+      flash[:alert] = 'There was a problem'
+      render :show
+    end
   end
+
+  def show
+    subscriber = Rails.application.message_verifier(:unsubscribe).verify(params[:id])
+    @subscriber = Subscriber.find(subscriber)
+  end
+
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.

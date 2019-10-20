@@ -1,0 +1,7 @@
+<h4>Unsubscribe from Rails Gift Exchanger Emails</h4>
+<p>By unsubscribing, you will no longer receive email...</p>
+<%= form_for(@subscriber, url: subscribers_update_path(id: @subscriber.id)) do |f| %>
+  <%= f.hidden_field(:subscribed, value: false) %>
+  <%= f.submit 'Unsubscribe' %>
+  <%= link_to 'Cancel', root_url %>
+<% end %>
