@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Created by:</strong>
+  <%= User.find(@exchange.user_id).name %>
+</p>
+
+<p>
   <strong>Date of gifting:</strong>
   <%= @exchange.date_of_gifting %>
 </p>

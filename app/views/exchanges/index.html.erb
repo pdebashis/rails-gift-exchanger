@@ -21,8 +21,10 @@
         <td><%= exchange.date_of_matching %></td>
         <td><%= exchange.finish_date %></td>
         <td><%= link_to 'Show', exchange %></td>
+        <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
         <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

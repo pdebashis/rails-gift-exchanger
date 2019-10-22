@@ -6,7 +6,9 @@
 
       <% if signed_in? %>
         Signed in as: <%= current_user.email %>
-        <%= link_to 'Admin Panel', rails_admin_path %>
+        <% if current_user.is_admin %>
+          <%= link_to 'Admin Panel', rails_admin_path %>
+        <% end %>
         <%= link_to 'Edit Profile', edit_user_profile_path(id: current_user.id) %>
         <%= link_to 'Sign out', sign_out_path, method: :delete %>
 

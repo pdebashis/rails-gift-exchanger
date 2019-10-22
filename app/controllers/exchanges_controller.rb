@@ -2,7 +2,6 @@ class ExchangesController < ApplicationController
   before_action :require_login
   before_action :set_exchange, only: [:show, :edit, :update, :destroy]
 
-
   # GET /exchanges
   # GET /exchanges.json
   def index
@@ -21,12 +20,17 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges/1/edit
   def edit
+    unless current_user.id == @exchange.user_id
+      flash[:alert] = 'Access Restricted.'
+      return redirect_to root_path
+    end
   end
 
   # POST /exchanges
   # POST /exchanges.json
   def create
-    @exchange = Exchange.new(exchange_params)
+    exchange_params_with_user = {:user_id => current_user.id}.merge(exchange_params)
+    @exchange = Exchange.new(exchange_params_with_user)
 
     respond_to do |format|
       if @exchange.save
@@ -42,6 +46,11 @@ class ExchangesController < ApplicationController
   # PATCH/PUT /exchanges/1
   # PATCH/PUT /exchanges/1.json
   def update
+    unless current_user.id == @exchange.user_id
+      flash[:alert] = 'Access Restricted.'
+      return redirect_to root_path
+    end
+
     respond_to do |format|
       if @exchange.update(exchange_params)
         format.html { redirect_to @exchange, notice: 'Exchange was successfully updated.' }
@@ -56,6 +65,11 @@ class ExchangesController < ApplicationController
   # DELETE /exchanges/1
   # DELETE /exchanges/1.json
   def destroy
+    unless current_user.id == @exchange.user_id
+      flash[:alert] = 'Access Restricted.'
+      return redirect_to root_path
+    end
+
     @exchange.destroy
     respond_to do |format|
       format.html { redirect_to exchanges_url, notice: 'Exchange was successfully destroyed.' }
@@ -71,6 +85,6 @@ class ExchangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exchange_params
-      params.require(:exchange).permit(:title, :date_of_gifting, :finish_date, :date_of_matching)
+      params.require(:exchange).permit(:title, :date_of_gifting, :finish_date, :date_of_matching, :user_id)
     end
 end

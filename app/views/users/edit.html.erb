@@ -7,9 +7,12 @@
   <%= form.label :name %>
   <%= form.text_field :name, autofocus: true %>
 
-    <div class="submit-field">
+  <%= form.label :interests %>
+  <%= form.text_area :interests %>
+
+  <div class="submit-field">
       <%= form.submit %>
-    </div>
+  </div>
 
   <% end %>
 </div>

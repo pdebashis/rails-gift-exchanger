@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_101447) do
+ActiveRecord::Schema.define(version: 2019_10_21_162721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_10_18_101447) do
     t.date "date_of_matching"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_exchanges_on_user_id"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -34,7 +36,8 @@ ActiveRecord::Schema.define(version: 2019_10_18_101447) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_admin", default: false
+    t.boolean "is_admin", default: false, null: false
+    t.text "interests"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
@@ -45,4 +48,5 @@ ActiveRecord::Schema.define(version: 2019_10_18_101447) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  add_foreign_key "exchanges", "users"
 end
