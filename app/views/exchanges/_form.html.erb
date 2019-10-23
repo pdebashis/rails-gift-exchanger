@@ -18,20 +18,21 @@
 
   <div class="field">
     <%= form.label :date_of_gifting %>
-    <%= form.date_field :date_of_gifting %>
+    <%= form.date_field :date_of_gifting, min: Date.today %>
   </div>
 
   <div class="field">
     <%= form.label :date_of_matching %>
-    <%= form.date_field :date_of_matching %>
+    <%= form.date_field :date_of_matching, min: Date.today %>
   </div>
 
   <div class="field">
     <%= form.label :finish_date %>
-    <%= form.date_field :finish_date %>
+    <%= form.date_field :finish_date, min: Date.today %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+SS

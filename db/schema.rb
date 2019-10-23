@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2019_10_21_162721) do
     t.string "name"
     t.boolean "is_admin", default: false, null: false
     t.text "interests"
+    t.text "books"
+    t.text "movies"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
