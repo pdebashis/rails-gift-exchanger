@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_162721) do
+ActiveRecord::Schema.define(version: 2019_11_23_112428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2019_10_21_162721) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_exchanges_on_user_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "email"
+    t.boolean "confirmed"
+    t.string "gift_to"
+    t.string "gift_from"
+    t.bigint "exchange_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exchange_id"], name: "index_members_on_exchange_id"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -51,4 +62,5 @@ ActiveRecord::Schema.define(version: 2019_10_21_162721) do
   end
 
   add_foreign_key "exchanges", "users"
+  add_foreign_key "members", "exchanges"
 end

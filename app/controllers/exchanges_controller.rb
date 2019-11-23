@@ -53,11 +53,9 @@ class ExchangesController < ApplicationController
 
     respond_to do |format|
       if @exchange.update(exchange_params)
-        format.html { redirect_to @exchange, notice: 'Exchange was successfully updated.' }
-        format.json { render :show, status: :ok, location: @exchange }
+        redirect_to @exchange, notice: 'Exchange was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @exchange.errors, status: :unprocessable_entity }
+        render :edit 
       end
     end
   end

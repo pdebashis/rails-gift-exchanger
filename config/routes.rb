@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :members
   resources :exchanges
   resources :subscribers, only: [:index, :new, :create, :show]
 

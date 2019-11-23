@@ -24,6 +24,7 @@
         <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
         <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Members', edit_exchange_path(exchange) %></td>
         <% end %>
       </tr>
     <% end %>
