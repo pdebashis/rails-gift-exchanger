@@ -25,5 +25,9 @@
   <%= @exchange.finish_date %>
 </p>
 
-<%= link_to 'Edit', edit_exchange_path(@exchange) %> |
+<% if current_user.id == @exchange.user_id %>
+<td><%= link_to 'Members', exchange_members_path(@exchange) %></td> |
+<% end %>
+
+
 <%= link_to 'Back', exchanges_path %>

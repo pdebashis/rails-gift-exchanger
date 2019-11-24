@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :members
-  resources :exchanges
+  resources :exchanges do
+    resources :members
+  end
   resources :subscribers, only: [:index, :new, :create, :show]
 
   patch 'subscribers/update'

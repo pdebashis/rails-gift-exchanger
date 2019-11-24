@@ -16,15 +16,13 @@
   <tbody>
     <% @exchanges.each do |exchange| %>
       <tr>
-        <td><%= exchange.title %></td>
+        <td><%= link_to exchange.title, exchange %></td>
         <td><%= exchange.date_of_gifting %></td>
         <td><%= exchange.date_of_matching %></td>
         <td><%= exchange.finish_date %></td>
-        <td><%= link_to 'Show', exchange %></td>
         <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
         <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Members', edit_exchange_path(exchange) %></td>
         <% end %>
       </tr>
     <% end %>

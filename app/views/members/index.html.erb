@@ -21,10 +21,8 @@
         <td><%= member.confirmed %></td>
         <td><%= member.gift_to %></td>
         <td><%= member.gift_from %></td>
-  
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th><%= member.exchange.title %></th>
+        <td><%= link_to 'Destroy', [@exchange,member], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New Member', new_member_path %>
+<%= link_to 'New Member', new_exchange_member_path(@exchange) %>
+<%= link_to 'Back', exchanges_path %>
