@@ -10,6 +10,8 @@
       <th>Gift to</th>
       <th>Gift from</th>
       <th>Exchange</th>
+      <th>Shipped</th>
+      <th>Received</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +24,8 @@
         <td><%= member.gift_to %></td>
         <td><%= member.gift_from %></td>
         <th><%= member.exchange.title %></th>
+        <th><%= member.received %></th>
+        <th><%= member.shipped %></th>
         <td><%= link_to 'Destroy', [@exchange,member], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -31,4 +35,4 @@
 <br>
 
 <%= link_to 'New Member', new_exchange_member_path(@exchange) %>
-<%= link_to 'Back', exchanges_path %>
+<%= link_to 'Back', exchange_path(@exchange) %>
