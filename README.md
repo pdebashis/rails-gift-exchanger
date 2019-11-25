@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+2.6.4
 
-* System dependencies
+* Rails version
+6.0.0
 
-* Configuration
+* Cloning
+git clone "https://github.com/pdebashis/rails-gift-exchanger.git"
+bundle install
+yarn install --check-files
+
 
 * Database creation
+Add application.yml file in config directory with the following parameter values : 
+pt_database,pt_password
+rake db:migrate
+rake db:seed
 
-* Database initialization
+* Mailer setup
+Add the following parameters to application.yml :
+google_username,google_password
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TODO
