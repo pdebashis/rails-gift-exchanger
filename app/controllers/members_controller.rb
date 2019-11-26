@@ -33,16 +33,15 @@ class MembersController < ApplicationController
       flash[:alert] = 'Access Restricted.'
       return redirect_to root_path
     end
-    @member = @exchange.members.build({:confirmed => false}.merge(member_params))
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to exchange_members_path(@exchange), notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+    user_search = User.find_by({:email => member_params[:email]})
+    @member = @exchange.members.build(member_params)
+    @member.user=user_search if user_search
+    if @member.save
+
+      redirect_to exchange_members_path(@exchange), notice: 'Member was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -68,10 +67,7 @@ class MembersController < ApplicationController
       return redirect_to root_path
     end
     @member.destroy
-    respond_to do |format|
-      format.html { redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.'
   end
 
   private

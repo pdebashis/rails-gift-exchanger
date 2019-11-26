@@ -12,6 +12,7 @@
       <th>Exchange</th>
       <th>Shipped</th>
       <th>Received</th>
+      <th>User Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <th><%= member.exchange.title %></th>
         <th><%= member.received %></th>
         <th><%= member.shipped %></th>
+        <th><%= member.user.name if member.user %></th>
         <td><%= link_to 'Destroy', [@exchange,member], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

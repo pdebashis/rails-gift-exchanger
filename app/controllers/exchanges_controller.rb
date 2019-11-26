@@ -51,12 +51,10 @@ class ExchangesController < ApplicationController
       return redirect_to root_path
     end
 
-    respond_to do |format|
-      if @exchange.update(exchange_params)
-        redirect_to @exchange, notice: 'Exchange was successfully updated.'
-      else
-        render :edit 
-      end
+    if @exchange.update(exchange_params)
+      redirect_to @exchange, notice: 'Exchange was successfully updated.'
+    else
+      render :edit 
     end
   end
 

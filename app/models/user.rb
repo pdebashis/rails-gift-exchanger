@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Clearance::User
+  has_many :members, dependent: :destroy
   after_save :insert_subscriber_table
 
   def insert_subscriber_table
