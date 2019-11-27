@@ -1,6 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Exchanges</h1>
+<h1>My Exchanges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Match date</th>
+      <th>Gift to</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.members.each do |member| %>
+      <tr>
+        <td><%= member.exchange.title %></td>
+        <td><%= member.exchange.date_of_matching %></td>
+        <td><%= member.gift_to %></td>
+        <td><%= link_to 'Confirm Participation', "" %></td>
+        <td><%= link_to 'Leave Exchange', "" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>All Exchanges</h1>
 
 <table>
   <thead>
@@ -32,3 +56,5 @@
 <br>
 
 <%= link_to 'New Exchange', new_exchange_path %>
+
+

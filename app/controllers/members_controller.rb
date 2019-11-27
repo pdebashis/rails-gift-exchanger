@@ -37,8 +37,8 @@ class MembersController < ApplicationController
     user_search = User.find_by({:email => member_params[:email]})
     @member = @exchange.members.build(member_params)
     @member.user=user_search if user_search
-    if @member.save
 
+    if @member.save
       redirect_to exchange_members_path(@exchange), notice: 'Member was successfully created.'
     else
       render :new
