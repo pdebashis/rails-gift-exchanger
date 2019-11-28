@@ -17,8 +17,8 @@
         <td><%= member.exchange.title %></td>
         <td><%= member.exchange.date_of_matching %></td>
         <td><%= member.gift_to %></td>
-        <td><%= link_to 'Confirm Participation', "" %></td>
-        <td><%= link_to 'Leave Exchange', "" %></td>
+        <td><%= link_to 'Confirm', "" %></td>
+        <td><%= link_to 'Leave', [member.exchange,member,root_redirect: true], method: :delete, data: { confirm: 'Want to Leave?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,7 +46,7 @@
         <td><%= exchange.finish_date %></td>
         <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
-        <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?'} %></td>
         <% end %>
       </tr>
     <% end %>

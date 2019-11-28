@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :exchanges do
     resources :members
   end
+
   resources :subscribers, only: [:index, :new, :create, :show]
 
   patch 'subscribers/update'
@@ -37,6 +38,6 @@ Rails.application.routes.draw do
 
 
   get '/contact', to: 'application#contact'
-  get "/terms_of_use", to: "application#terms_of_use"
+  get '/terms_of_use', to: 'application#terms_of_use'
 
 end

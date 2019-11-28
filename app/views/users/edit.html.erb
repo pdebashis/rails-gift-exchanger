@@ -1,22 +1,26 @@
 <div id="clearance">
   <%= form_for @user do |form| %>
 
+ <div class="field">
   <%= form.label :email %>
   <%= form.text_field :email, :readonly => true %>
-
+ </div>
+ <div class="field">
   <%= form.label :name %>
   <%= form.text_field :name, autofocus: true %>
-
+</div>
+ <div class="field">
   <%= form.label :interests %>
   <%= form.text_area :interests %>
-
+</div>
+ <div class="field">
   <%= form.label :movies %>
   <%= form.text_area :movies %>
-
-
+</div>
+ <div class="field">
   <%= form.label :books %>
   <%= form.text_area :books %>
-
+</div>
 
   <div class="submit-field">
       <%= form.submit %>

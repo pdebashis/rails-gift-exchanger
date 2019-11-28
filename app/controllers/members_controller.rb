@@ -48,26 +48,25 @@ class MembersController < ApplicationController
   # PATCH/PUT /members/1
   # PATCH/PUT /members/1.json
   def update
-    respond_to do |format|
-      if @member.update(member_params)
-        format.html { redirect_to exchange_members_path(@exchange), notice: 'Member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @member }
-      else
-        format.html { render :edit }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
+    @member.confirmation = true
+    @member.save
   end
+
 
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
+    if params[:root_redirect]
+      @member.destroy
+      redirect_to root_path 
+    else
     unless current_user.id == @exchange.user_id
       flash[:alert] = 'Access Restricted.'
       return redirect_to root_path
     end
     @member.destroy
-    redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.'
+      redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.'
+    end
   end
 
   private
@@ -82,6 +81,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:email, :exchange_id)
+      params.require(:member).permit(:email, :exchange_id, :confirmed, :gift_to, :gift_from)
     end
 end
