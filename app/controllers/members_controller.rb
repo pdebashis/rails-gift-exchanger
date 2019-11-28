@@ -56,14 +56,14 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
+    unless current_user.id == @exchange.user_id || current_user == @member.user
+      flash[:alert] = 'Access Restricted.'
+      return redirect_to root_path
+    end
     if params[:root_redirect]
       @member.destroy
       redirect_to root_path 
     else
-    unless current_user.id == @exchange.user_id
-      flash[:alert] = 'Access Restricted.'
-      return redirect_to root_path
-    end
     @member.destroy
       redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.'
     end
