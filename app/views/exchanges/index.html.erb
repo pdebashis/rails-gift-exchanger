@@ -17,7 +17,11 @@
         <td><%= member.exchange.title %></td>
         <td><%= member.exchange.date_of_matching %></td>
         <td><%= member.gift_to %></td>
-        <td><%= link_to 'Confirm', "" %></td>
+        <% if member.confirmed %>
+          <td>Confirmed</td>
+        <% else %>
+          <td><%= link_to 'Confirm', confirm_membership_exchange_members_path(:exchange_id => member.exchange.id, :id => member.id) %></td>
+        <% end %>
         <td><%= link_to 'Leave', [member.exchange,member,root_redirect: true], method: :delete, data: { confirm: 'Want to Leave?' } %></td>
       </tr>
     <% end %>

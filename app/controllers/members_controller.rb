@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :get_exchange
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :confirm_membership]
 
   # GET /members
   # GET /members.json
@@ -45,14 +45,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /members/1
-  # PATCH/PUT /members/1.json
-  def update
-    @member.confirmation = true
-    @member.save
-  end
-
-
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
@@ -67,6 +59,16 @@ class MembersController < ApplicationController
     @member.destroy
       redirect_to exchange_members_path(@exchange), notice: 'Member was successfully destroyed.'
     end
+  end
+
+  def confirm_membership
+    unless current_user == @member.user
+      flash[:alert] = 'Access Restricted.'
+      return redirect_to root_path
+    end
+    @member.update_attributes(:confirmed => true)
+    @member.save
+    redirect_to root_path 
   end
 
   private

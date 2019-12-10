@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :exchanges do
-    resources :members
+    resources :members do
+      collection do
+        get :confirm_membership
+      end
+    end
   end
 
   resources :subscribers, only: [:index, :new, :create, :show]
