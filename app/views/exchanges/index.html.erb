@@ -16,7 +16,7 @@
       <tr>
         <td><%= member.exchange.title %></td>
         <td><%= member.exchange.date_of_matching %></td>
-        <td><%= member.gift_to %></td>
+        <td><%= User.find_by({:id=>member.gift_to}) %></td>
         <% if member.confirmed %>
           <td>Confirmed</td>
         <% else %>
@@ -51,6 +51,7 @@
         <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
         <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+        <td><%= link_to 'Match', match_making_exchanges_path(:id=>exchange.id) %></td>
         <% end %>
       </tr>
     <% end %>

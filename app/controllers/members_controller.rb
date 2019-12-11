@@ -67,7 +67,6 @@ class MembersController < ApplicationController
       return redirect_to root_path
     end
     @member.update_attributes(:confirmed => true)
-    @member.save
     redirect_to root_path 
   end
 

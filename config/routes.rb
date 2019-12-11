@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   resources :exchanges do
+    collection do
+      get :match_making
+    end
+
     resources :members do
       collection do
         get :confirm_membership

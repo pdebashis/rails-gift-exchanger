@@ -1,6 +1,6 @@
 class ExchangesController < ApplicationController
   before_action :require_login
-  before_action :set_exchange, only: [:show, :edit, :update, :destroy]
+  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :match_making]
 
   # GET /exchanges
   # GET /exchanges.json
@@ -31,6 +31,9 @@ class ExchangesController < ApplicationController
   def create
     exchange_params_with_user = {:user_id => current_user.id}.merge(exchange_params)
     @exchange = Exchange.new(exchange_params_with_user)
+
+    @member = @exchange.members.build({:email => current_user.email, :exchange_id => @exchange.id, :confirmed => false})
+    @member.user = current_user
 
     respond_to do |format|
       if @exchange.save
@@ -71,6 +74,22 @@ class ExchangesController < ApplicationController
       format.html { redirect_to exchanges_url, notice: 'Exchange was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def match_making
+    @exchange.members.each do |member|
+      potential_matches = []
+      if (member.confirmed)
+        potential_matches.push(member.user_id)
+      else
+        member.destroy       
+      end
+      potential_matches.shuffle!
+      for i in (0..potential_matches.size-1) do
+        member.update_attributes(:gift_to => potential_matches[i-1])
+      end
+    end
+    redirect_to root_path
   end
 
   private
