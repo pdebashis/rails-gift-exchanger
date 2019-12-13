@@ -16,9 +16,11 @@
       <tr>
         <td><%= member.exchange.title %></td>
         <td><%= member.exchange.date_of_matching %></td>
-        <td><%= User.find_by({:id=>member.gift_to}) %></td>
+        
         <% if member.confirmed %>
-          <td>Confirmed</td>
+          <% if member.gift_to %>
+          <td><%= link_to 'Giftee',  user_profile_path(:id => member.gift_to) %></td>
+          <% end %>
         <% else %>
           <td><%= link_to 'Confirm', confirm_membership_exchange_members_path(:exchange_id => member.exchange.id, :id => member.id) %></td>
         <% end %>

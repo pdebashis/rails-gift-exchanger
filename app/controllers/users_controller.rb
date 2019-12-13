@@ -1,5 +1,9 @@
 class UsersController < Clearance::UsersController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :show]
+
+  def show
+    @user
+  end
 
   def edit
   	@user

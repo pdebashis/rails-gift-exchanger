@@ -77,18 +77,20 @@ class ExchangesController < ApplicationController
   end
 
   def match_making
+    potential_matches = []
     @exchange.members.each do |member|
-      potential_matches = []
       if (member.confirmed)
         potential_matches.push(member.user_id)
       else
         member.destroy       
       end
-      potential_matches.shuffle!
-      for i in (0..potential_matches.size-1) do
-        member.update_attributes(:gift_to => potential_matches[i-1])
-      end
     end
+    potential_matches.shuffle!
+    for i in (0..potential_matches.size-1) do
+      member=@exchange.members.find_by(:user_id=>potential_matches[i])
+      member.update_attributes(:gift_to => potential_matches[i-1])
+    end
+    
     redirect_to root_path
   end
 

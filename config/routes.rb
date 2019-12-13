@@ -20,13 +20,13 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :users, controller: "clearance/users", only: [:create, :show] do
+  resources :users, controller: "clearance/users", only: [:create] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
 
-  resources :users, controller: "users", only: [:edit, :update], as: "user_profile"
+  resources :users, controller: "users", only: [:edit, :update, :show], as: "user_profile"
 
 
   constraints Clearance::Constraints::SignedOut.new do
