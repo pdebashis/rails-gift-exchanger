@@ -26,7 +26,8 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :users, controller: "users", only: [:edit, :update, :show], as: "user_profile"
+  resources :users, controller: "users", only: [:edit, :update], as: "user_profile"
+  get "/users/:id/child_show" => "users#child_show", :as => 'child_show'
 
 
   constraints Clearance::Constraints::SignedOut.new do

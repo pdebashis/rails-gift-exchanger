@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>Finish date:</strong>
-  <%= @exchange.finish_date %>
+  <strong>Number of members:</strong>
+  <%= @exchange.members.size %>
 </p>
 
 <% if current_user.id == @exchange.user_id %>

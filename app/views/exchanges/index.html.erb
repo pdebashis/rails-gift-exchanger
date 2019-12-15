@@ -2,29 +2,37 @@
 
 <h1>My Exchanges</h1>
 
-<table>
+  <table>
+  <% if current_user.members.size > 0 %>
   <thead>
     <tr>
-      <th>Title</th>
+      <th width="200">Title</th>
       <th>Match date</th>
-      <th>Gift to</th>
     </tr>
   </thead>
+  <% else %>
+  <thead>
+     <tr>Its empty in here</tr>
+  </thead>
+  <% end %>
 
   <tbody>
     <% current_user.members.each do |member| %>
       <tr>
-        <td><%= member.exchange.title %></td>
+        <td width="200"><%= member.exchange.title %></td>
         <td><%= member.exchange.date_of_matching %></td>
         
         <% if member.confirmed %>
           <% if member.gift_to %>
-          <td><%= link_to 'Giftee',  user_profile_path(:id => member.gift_to) %></td>
+            <td><%= link_to 'Giftee',  child_show_path(:id => member.gift_to) %></td>
+          <% else %>
+            <td><%= link_to 'Leave', [member.exchange,member,root_redirect: true], method: :delete, data: { confirm: 'Want to Leave?' } %></td>
           <% end %>
         <% else %>
           <td><%= link_to 'Confirm', confirm_membership_exchange_members_path(:exchange_id => member.exchange.id, :id => member.id) %></td>
+          <td><%= link_to 'Reject', [member.exchange,member,root_redirect: true], method: :delete, data: { confirm: 'Want to Reject?' } %></td>
         <% end %>
-        <td><%= link_to 'Leave', [member.exchange,member,root_redirect: true], method: :delete, data: { confirm: 'Want to Leave?' } %></td>
+        
       </tr>
     <% end %>
   </tbody>
@@ -35,11 +43,9 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th width="200">Title</th>
       <th>Date of gifting</th>
       <th>Date of matching</th>
-      <th>Finish date</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -49,11 +55,10 @@
         <td><%= link_to exchange.title, exchange %></td>
         <td><%= exchange.date_of_gifting %></td>
         <td><%= exchange.date_of_matching %></td>
-        <td><%= exchange.finish_date %></td>
         <% if current_user.id == exchange.user_id %>
         <td><%= link_to 'Edit', edit_exchange_path(exchange) %></td>
         <td><%= link_to 'Destroy', exchange, method: :delete, data: { confirm: 'Are you sure?'} %></td>
-        <td><%= link_to 'Match', match_making_exchanges_path(:id=>exchange.id) %></td>
+        <td><%= link_to 'Match', match_making_exchanges_path(:id=>exchange.id), data: { confirm: 'All unconfirmed users will be deleted. Continue to match?'} %></td>
         <% end %>
       </tr>
     <% end %>

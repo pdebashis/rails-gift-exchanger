@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_183515) do
+ActiveRecord::Schema.define(version: 2019_12_15_190006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_11_26_183515) do
   create_table "exchanges", force: :cascade do |t|
     t.string "title"
     t.date "date_of_gifting"
-    t.date "finish_date"
     t.date "date_of_matching"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 2019_11_26_183515) do
     t.string "email"
     t.boolean "confirmed", default: false
     t.string "gift_to"
-    t.string "gift_from"
     t.bigint "exchange_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

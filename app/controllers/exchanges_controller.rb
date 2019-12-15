@@ -102,6 +102,6 @@ class ExchangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exchange_params
-      params.require(:exchange).permit(:title, :date_of_gifting, :finish_date, :date_of_matching, :user_id)
+      params.require(:exchange).permit(:title, :date_of_gifting, :date_of_matching, :user_id)
     end
 end
