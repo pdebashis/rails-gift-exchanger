@@ -10,16 +10,4 @@ Exchange.delete_all
 User.delete_all
 Subscriber.delete_all
 
-
-User.create!([{email: "dabbebhutdp@gmail.com",name: "Debashis", is_admin: true, password: "password"}])
-
-
-Exchange.create!([{title: "Christmas 2019",date_of_gifting: "2019-12-21", date_of_matching: "2019-12-12", user_id: User.first.id}])
-Exchange.create!([{title: "Test Exchange",date_of_gifting: "2019-12-21", date_of_matching: "2019-12-12", user_id: User.first.id}])
-
-exchange1 = Exchange.first
-
-
-member1 = exchange1.members.build({email: "dabbebhutdp@gmail.com"})
-member1.user = User.find_by({email: "dabbebhutdp@gmail.com"})
-member1.save
+User.create!([{email: "dabbebhutdp@gmail.com",name: "Debashis", is_admin: true, password: "newpassword"}])

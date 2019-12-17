@@ -1,6 +1,6 @@
 class ExchangesController < ApplicationController
   before_action :require_login
-  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :match_making]
+  before_action :set_exchange, only: [:show, :edit, :update, :destroy, :match_making, :join]
 
   # GET /exchanges
   # GET /exchanges.json
@@ -31,9 +31,6 @@ class ExchangesController < ApplicationController
   def create
     exchange_params_with_user = {:user_id => current_user.id}.merge(exchange_params)
     @exchange = Exchange.new(exchange_params_with_user)
-
-    @member = @exchange.members.build({:email => current_user.email, :exchange_id => @exchange.id, :confirmed => false})
-    @member.user = current_user
 
     respond_to do |format|
       if @exchange.save
@@ -75,6 +72,19 @@ class ExchangesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def join
+    current_user.members.each do |member|
+      if (member.exchange_id == @exchange.id)
+        flash[:alert] = 'Already a Member'
+        redirect_to root_path and return
+      end
+    end
+    new_member = @exchange.members.build({:email => current_user.email, :user=>current_user,:confirmed => false })
+    @exchange.save
+    redirect_to root_path
+  end
+
 
   def match_making
     potential_matches = []

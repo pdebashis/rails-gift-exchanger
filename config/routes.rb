@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :exchanges do
     collection do
       get :match_making
+      get :join
     end
 
     resources :members do

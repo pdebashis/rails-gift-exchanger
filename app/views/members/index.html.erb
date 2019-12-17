@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th width="200">Email</th>
-      <th width="100">Confirmed</th>
       <th width="100">Name</th>
       <th colspan="3"></th>
     </tr>
@@ -16,8 +15,10 @@
     <% @members.each do |member| %>
       <tr>
         <td><%= member.email %></td>
-        <td><%= member.confirmed %></td>
         <th><%= member.user.name if member.user %></th>
+        <% if ! member.confirmed %>
+          <td><%= link_to 'Confirm', confirm_membership_exchange_members_path(:exchange_id => member.exchange.id, :id => member.id) %></td>
+        <% end %>
         <td><%= link_to 'Remove', [@exchange,member], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -27,4 +28,4 @@
 <br>
 
 <%= link_to 'New Member', new_exchange_member_path(@exchange) %> | 
-<%= link_to 'Back', exchange_path(@exchange) %>
+<%= link_to 'Back', root_path %>

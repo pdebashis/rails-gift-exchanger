@@ -62,12 +62,13 @@ class MembersController < ApplicationController
   end
 
   def confirm_membership
-    unless current_user == @member.user
+    exchange = Exchange.find(@member.exchange_id)
+    unless current_user.id == exchange.user_id
       flash[:alert] = 'Access Restricted.'
       return redirect_to root_path
     end
     @member.update_attributes(:confirmed => true)
-    redirect_to root_path 
+    return redirect_to exchange_members_path(@exchange)
   end
 
   private
