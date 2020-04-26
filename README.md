@@ -26,6 +26,8 @@ Add application.yml file in config directory with the following parameter values
 
 pt_database,pt_password
 
+rake db;create
+
 rake db:migrate
 
 rake db:seed
